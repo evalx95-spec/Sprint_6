@@ -7,7 +7,7 @@ from ..data.faq_data import FAQ_ANSWERS
 class TestFAQ:
 
     @pytest.mark.parametrize("faq_data", FAQ_ANSWERS)
-    @allure.title("Проверка открытия ответа на вопрос FAQ: {faq_data[expected_text]}")  # Исправлено: добавлена закрывающая }
+    @allure.title("Проверка открытия ответа на вопрос FAQ: {faq_data[expected_text]}") 
     @allure.description("При клике на вопрос должен открываться соответствующий текст ответа")
     def test_faq_questions(self, driver, faq_data):
         faq = FaqQuestions(driver)
