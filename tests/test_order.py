@@ -2,6 +2,7 @@ import allure
 import pytest
 from ..user_data import UserData
 from ..pages.order_page import Orders
+from ..urls import Urls  
 
 @allure.feature("Заказы")
 class TestOrder:
@@ -16,7 +17,6 @@ class TestOrder:
         order1.forma_order2(**user_data["order2"])
 
         order1.click_yes()
-
         assert order1.order_decorated()
 
     @allure.title("Проверка нижней кнопки Заказать")
@@ -37,12 +37,11 @@ class TestOrder:
         order = Orders(driver)
         order.click_cookie()
         order.click_scooter()
-        assert order.get_current_url() == "https://qa-scooter.education-services.ru/" 
-
+        assert order.get_current_url() == Urls.HOME_PAGE  
 
     @allure.title("Переход на страницу Яндекса при клике на логотип 'Яндекс'")
     def test_yandex_logo_redirect(self, driver):
         order = Orders(driver)
         order.click_cookie()
         order.click_yandex_and_switch_to_new_tab()
-        assert "https://ya.ru/" in order.get_current_url()
+        assert Urls.YANDEX_URL in order.get_current_url()  

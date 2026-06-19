@@ -2,7 +2,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import allure
 
-
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
@@ -64,3 +63,23 @@ class BasePage:
     def click_when_ready(self, locator):
         element = self.wait.until(EC.element_to_be_clickable(locator))
         element.click()
+
+    @allure.step("Переключиться на новую вкладку")
+    def switch_to_new_tab(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+
+    @allure.step("Переключиться на вкладку по индексу")
+    def switch_to_tab_by_index(self, index=-1):
+        self.driver.switch_to.window(self.driver.window_handles[index])
+
+    @allure.step("Получить текущий URL")
+    def get_current_url(self):
+        return self.driver.current_url
+
+    @allure.step("Ожидать открытия новой вкладки")
+    def wait_for_new_tab(self, expected_number_of_windows=2):
+        self.wait.until(EC.number_of_windows_to_be(expected_number_of_windows))
+
+    @allure.step("Ожидать загрузки страницы")
+    def wait_for_page_load(self):
+        self.wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")

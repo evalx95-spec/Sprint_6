@@ -38,7 +38,7 @@ class UserData:
         },
 "order2": {
             "delivery": "29.07.2026",
-            "period": Order.RENTAL_PERIOD_THREE_DAYS, # ← ИСПРАВЛЕНО
+            "period": Order.RENTAL_PERIOD_THREE_DAYS, 
             "color": Order.COLOR_BLACK,
             "comment": "Позвоните за 10 минут"
         }
